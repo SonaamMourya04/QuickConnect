@@ -1,42 +1,210 @@
-body{
-  background-color: black;
-  color: white;
+* {
+  box-sizing: border-box;
 }
 
-.join_room{
-  height:80vh;
-  display:flex;
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(circle at top, #2d1b1b, #0a0a0a 55%);
+  color: #f5f5f5;
+}
+
+.app_container {
+  min-height: 100vh;
+  display: flex;
   align-items: center;
-  justify-content:center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.join_room_card,
+.chat_container {
+  width: min(420px, 92vw);
+  background: rgba(15, 18, 40, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+  padding: 2rem;
+}
+
+.join_room_card {
+  text-align: center;
+}
+
+.join_room_card h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 3.5vw, 2.6rem);
+}
+
+.join_room_card p {
+  margin: 0 0 1.8rem;
+  color: #bfc0d4;
+}
+
+.join_room_card input,
+.chat_body input {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f5f5;
+  padding: 0.95rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.join_room_card input:focus,
+.chat_body input:focus {
+  outline: none;
+  border-color: rgba(255, 107, 53, 0.8);
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.14);
+}
+
+.join_room_card input::placeholder,
+.chat_body input::placeholder {
+  color: #b0b1c0;
+}
+
+.primary_btn,
+.send_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.primary_btn {
+  width: 100%;
+  padding: 1rem 0;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.primary_btn:hover,
+.send_btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 35px rgba(255, 107, 53, 0.26);
+}
+
+.chat_container {
+  padding: 1.5rem;
+}
+
+.chat_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chat_header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.chat_header p {
+  margin: 0.35rem 0 0;
+  color: #b0b1c0;
+  font-size: 0.95rem;
+}
+
+.chat_box {
+  display: flex;
   flex-direction: column;
-  gap:1rem;
-}
-.join_room input{
-  height:35px;
-  width:300px;
-  background-color: black;
-  color: white;
-  border:1px solid yellow;
+  gap: 1rem;
 }
 
-.join_room input::placeholder{
-  font-weight: bolder;
-  font-size:1rem ;
-  padding: 5px;
+.message_list {
+  max-height: 380px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-right: 0.25rem;
 }
 
-
-
-.join_room button{
-  height:40px;
-  width:310px;
-  font-weight: bolder;
-  font: size 1.2rem;
-  background-color: rgb(20,20,178);
-  color: white;
-  padding: 10px;
-  border: 1px solid yellow;
-
+.message_content {
+  display: flex;
 }
 
+.message_content.you {
+  justify-content: flex-end;
+}
+
+.message_content.other {
+  justify-content: flex-start;
+}
+
+.message_card {
+  max-width: 78%;
+  padding: 1rem 1rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+}
+
+.message_content.you .message_card {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.95), rgba(247, 147, 30, 0.95));
+  color: #fff;
+}
+
+.message_text {
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+}
+
+.message_detail {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.chat_body {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.chat_body button {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  font-size: 1.2rem;
+}
+
+.send_btn {
+  width: 56px;
+  height: 56px;
+}
+
+@media (max-width: 480px) {
+  .chat_container,
+  .join_room_card {
+    padding: 1.2rem;
+  }
+
+  .message_card {
+    max-width: 100%;
+  }
+
+  .chat_body {
+    grid-template-columns: 1fr;
+  }
+
+  .chat_body button {
+    width: 100%;
+  }
+}
 
