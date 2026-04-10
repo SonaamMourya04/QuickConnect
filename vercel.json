@@ -2,12 +2,10 @@
   "builds": [
     {
       "src": "Client/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "Client/dist"
-      }
+      "use": "@vercel/static-build"
     }
   ],
+  "outputDirectory": "Client/dist",
   "routes": [
     {
       "src": "/(.*)",
